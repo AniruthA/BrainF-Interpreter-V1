@@ -15,7 +15,11 @@ int main(int argc, char *argv[]) {
   {
     while ( getline (myfile,line) )
     {
-      code += line;
+      for (int i=0;i<line.length();i++){
+        if (line[i]=='>'||line[i]=='<'||line[i]=='+'||line[i]=='-'||line[i]=='.'||line[i]==','||line[i]=='['||line[i]==']'){
+          code+=line[i];
+        }
+      }
     }
     myfile.close();
   }

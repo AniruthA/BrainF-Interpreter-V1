@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <regex>
+#include <algorithm>
 #include "Token.h"
 
 using namespace std;
@@ -24,7 +25,7 @@ class Lexer {
       // If there is a match and the next char does not also match, return the length of the match
       try {
         if (regex_match(currentToken,regexToken) && !(regex_match(currentToken+code[i+1],regexToken))) {
-        return currentToken.length();
+          return currentToken.length();
         }
       } catch (...) {
       
@@ -40,7 +41,7 @@ class Lexer {
     Token token;
     bool isMatched = false;
     // Clearing off unnecessary whitespace
-    while (src[0]==' '){
+    while (src[0]==' '||src[0]=='\n'){
       src = src.substr(1,src.size());
     }
     // Try all the regexes
